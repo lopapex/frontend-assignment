@@ -8,5 +8,6 @@
   "login.description": "Welcome to our secure portal! To access the full functionality of our app, kindly provide your credentials below. Your privacy is our priority.",
   "login.username": "Username",
   "login.password": "Password",
+  "login.password.placeholder": "Enter your password",
   "login.button": "Log in"
 }
