@@ -15,7 +15,8 @@
     "eject": "react-scripts eject",
     "prettify": "prettier --write --config ./.prettierrc --ignore-path ./.prettierignore .",
     "eslint": "eslint --cache --fix -c ./.eslintrc.json .",
-    "typecheck": "tsc --project tsconfig.json --noEmit"
+    "typecheck": "tsc --project tsconfig.json --noEmit",
+    "generate-api": "npx openapi-generator generate -i ./backend/swagger/openApi.json -g typescript-fetch -o ./src/api/generated -c ./openapi-config.json -t ./openapi-templates --skip-validate-spec"
   },
   "dependencies": {
     "@chakra-ui/react": "2.5.5",
@@ -87,6 +88,7 @@
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.23.3",
+    "@openapitools/openapi-generator-cli": "1.0.18-4.3.1",
     "@types/bcrypt": "^5.0.2",
     "@types/cors": "^2.8.17",
     "@types/eslint-plugin-prettier": "^3.1.0",
