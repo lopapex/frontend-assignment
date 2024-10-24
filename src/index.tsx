@@ -7,18 +7,34 @@ import GlobalStyles from './GlobalStyles';
 import WebVitals from './WebVitals';
 import './i18n/i18n';
 import theme from './theme';
-import { BrowserRouter as Router } from 'react-router-dom';
+import {BrowserRouter as Router} from 'react-router-dom';
+import {QueryClient, QueryClientProvider} from 'react-query';
+import {UserStorageStorageProvider} from './hooks/useUserStorage';
 
 const MOUNT_NODE = document.getElementById('root');
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 ReactDOM.render(
   <StrictMode>
     <ChakraProvider theme={theme} resetCSS>
       <HelmetProvider>
         <Router>
-          <App />
-          <GlobalStyles />
-          <WebVitals showStatusInConsoleLog />
+          <QueryClientProvider client={queryClient}>
+            <UserStorageStorageProvider>
+              <>
+                <App />
+                <GlobalStyles />
+                <WebVitals showStatusInConsoleLog />
+              </>
+            </UserStorageStorageProvider>
+          </QueryClientProvider>
         </Router>
       </HelmetProvider>
     </ChakraProvider>

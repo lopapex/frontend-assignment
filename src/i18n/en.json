@@ -4,6 +4,9 @@
   "welcome.message": "Welcome to Carvago Front-End Assignment",
   "welcome.link": "see API docs",
 
+  "topBar.title": "Zentask",
+  "topBar.button": "Logout",
+
   "login.title": "It’s good to have you back!",
   "login.description": "Welcome to our secure portal! To access the full functionality of our app, kindly provide your credentials below. Your privacy is our priority.",
   "login.username": "Username",
@@ -12,6 +15,7 @@
   "login.button": "Log in",
   "login.footer": "Don't have an account?",
   "login.footer.link": "Register",
+  "login.error": "An error has occurred. Please check your credentials.",
 
   "register.title": "Create Your Account",
   "register.description": "Join our community! Please fill out the form below to create a new account. We value your privacy.",
@@ -23,5 +27,6 @@
   "register.password.error": "Passwords do not match",
   "register.button": "Register",
   "register.footer": "Already have an account?",
-  "register.footer.link": "Log in"
+  "register.footer.link": "Log in",
+  "register.error": "An error has occurred. User already exists."
 }

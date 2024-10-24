@@ -5,6 +5,7 @@ import {Register} from './pages/Register';
 import {Routes, Route} from 'react-router-dom';
 import pathnames from './constants/pathnames';
 import { Welcome } from './pages/Welcome';
+import { TopBar } from './components/ui/TopBar';
 
 function App() {
   const {i18n, t} = useTranslation();
@@ -18,6 +19,8 @@ function App() {
       >
         <meta name="description" content={t('app.description')} />
       </Helmet>
+
+      <TopBar />
 
       <Routes>
         <Route
