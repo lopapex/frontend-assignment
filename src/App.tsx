@@ -1,6 +1,6 @@
 import {Helmet} from 'react-helmet-async';
 import {useTranslation} from 'react-i18next';
-import {Welcome} from './pages/Welcome';
+import { Login } from './pages/Login';
 
 function App() {
   const {i18n, t} = useTranslation();
@@ -18,7 +18,7 @@ function App() {
       {/*
        * start from here
        */}
-      <Welcome />
+      <Login />
     </>
   );
 }

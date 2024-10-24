@@ -2,5 +2,11 @@
   "app.title": "Carvago Frontend Assignment",
   "app.description": "Assignment in React.js for developers who want to join our team.",
   "welcome.message": "Welcome to Carvago Front-End Assignment",
-  "welcome.link": "see API docs"
+  "welcome.link": "see API docs",
+
+  "login.title": "It’s good to have you back!",
+  "login.description": "Welcome to our secure portal! To access the full functionality of our app, kindly provide your credentials below. Your privacy is our priority.",
+  "login.username": "Username",
+  "login.password": "Password",
+  "login.button": "Log in"
 }
