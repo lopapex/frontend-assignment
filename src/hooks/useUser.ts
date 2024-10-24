@@ -1,7 +1,7 @@
 import {useMutation} from 'react-query';
 import api from '../services/api';
 import {Tokens, User} from '../api/generated';
-import {useUserStorage} from './useUserStorage';
+import { useUserStorage } from './useUserStorage';
 
 export type UserInfo = {
   username: string;
@@ -43,4 +43,4 @@ export const useLoginMutation = () => {
       onSuccess: onLogin,
     }
   );
-};
+}

@@ -8,9 +8,6 @@ import {
   PopoverTrigger,
   PopoverContent,
   PopoverArrow,
-  PopoverCloseButton,
-  PopoverHeader,
-  PopoverBody,
   Button,
 } from '@chakra-ui/react';
 import {ReactComponent as Logo} from '../../assets/logo.svg';

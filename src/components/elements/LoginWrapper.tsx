@@ -36,7 +36,7 @@ export const LoginWrapper = ({type, onSubmit, children}: LoginWrapperProps) => {
               <Text fontSize="base" fontWeight="base" color="text-secondary">
                 {t(`${type}.footer`)}{' '}
                 <Link color="fill-brand" href={isLogin ? pathnames.register : pathnames.login}>
-                  {t(`${type}.footer.link`)}
+                  {t(`${type}.footerLink`)}
                 </Link>
               </Text>
             </Stack>

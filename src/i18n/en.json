@@ -14,7 +14,7 @@
   "login.password.placeholder": "Enter your password",
   "login.button": "Log in",
   "login.footer": "Don't have an account?",
-  "login.footer.link": "Register",
+  "login.footerLink": "Register",
   "login.error": "An error has occurred. Please check your credentials.",
 
   "register.title": "Create Your Account",
@@ -27,6 +27,9 @@
   "register.password.error": "Passwords do not match",
   "register.button": "Register",
   "register.footer": "Already have an account?",
-  "register.footer.link": "Log in",
-  "register.error": "An error has occurred. User already exists."
+  "register.footerLink": "Log in",
+  "register.error": "An error has occurred. User already exists.",
+
+  "refreshError.title": "Error",
+  "refreshError.description": "Access token has expired."
 }
