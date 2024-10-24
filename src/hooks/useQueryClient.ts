@@ -1,4 +1,4 @@
-import {MutationCache, QueryCache, QueryClient} from 'react-query';
+import {MutationCache, MutationKey, QueryCache, QueryClient, QueryKey} from 'react-query';
 import pathnames from '../constants/pathnames';
 import api from '../services/api';
 import {SESSION_STORAGE_KEYS} from '../constants/storageKeys';
@@ -21,11 +21,11 @@ const setRefreshToken = (newToken: string) => {
   sessionStorage.setItem(SESSION_STORAGE_KEYS.USER_INFO, JSON.stringify(userInfo));
 };
 
-const handleError = async (error: any, requestInfo: any, t: any, toast: any) => {
+const handleError = async (error: any, key: QueryKey | MutationKey | undefined, onRefreshError: () => void) => {
   if (error?.response?.status === 401) {
     try {
       // Save the current query or mutation key for retry later
-      failedRequestInfo = requestInfo.queryKey || requestInfo.mutationKey;
+      failedRequestInfo = key;
 
       // Try to refresh the token
       const newToken = await api.user.refreshToken({
@@ -40,14 +40,7 @@ const handleError = async (error: any, requestInfo: any, t: any, toast: any) => 
         queryClient.invalidateQueries(failedRequestInfo);
       }
     } catch (refreshError) {
-      window.location.href = pathnames.login;
-      toast({
-        title: t('refreshError.title'),
-        description: t('refreshError.description'),
-        status: 'failed',
-        duration: 2000,
-        isClosable: false,
-      });
+      onRefreshError();
     }
   }
 };
@@ -56,15 +49,26 @@ export const useQueryClient = () => {
   const toast = useToast();
   const {t} = useTranslation();
 
+  const onRefreshError = () => {
+    window.location.href = pathnames.login;
+    toast({
+      title: t('refreshError.title'),
+      description: t('refreshError.description'),
+      status: 'error',
+      duration: 2000,
+      isClosable: false,
+    });
+  };
+
   queryClient = new QueryClient({
     queryCache: new QueryCache({
       onError: async (error, query) => {
-        await handleError(error, query, t, toast);
+        await handleError(error, query.queryKey, onRefreshError);
       },
     }),
     mutationCache: new MutationCache({
       onError: async (error, _variables, _context, mutation) => {
-        await handleError(error, mutation, t, toast);
+        await handleError(error, mutation.options.mutationKey, onRefreshError);
       },
     }),
     defaultOptions: {
