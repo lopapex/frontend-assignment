@@ -9,5 +9,19 @@
   "login.username": "Username",
   "login.password": "Password",
   "login.password.placeholder": "Enter your password",
-  "login.button": "Log in"
+  "login.button": "Log in",
+  "login.footer": "Don't have an account?",
+  "login.footer.link": "Register",
+
+  "register.title": "Create Your Account",
+  "register.description": "Join our community! Please fill out the form below to create a new account. We value your privacy.",
+  "register.username": "Username",
+  "register.password": "Password",
+  "register.password.placeholder": "Enter a strong password",
+  "register.password.confirm": "Confirm Password",
+  "register.password.confirm.placeholder": "Enter it password again",
+  "register.password.error": "Passwords do not match",
+  "register.button": "Register",
+  "register.footer": "Already have an account?",
+  "register.footer.link": "Log in"
 }

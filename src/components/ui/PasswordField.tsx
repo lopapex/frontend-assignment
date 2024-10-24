@@ -1,6 +1,6 @@
 import {InputGroup, InputRightElement} from '@chakra-ui/react';
 import {cloneElement, ReactElement, useState} from 'react';
-import {IconHide, IconShow} from '../constants/icons';
+import {IconHide, IconShow} from '../../constants/icons';
 import { Field } from './Field';
 
 type PasswordFieldProps = {
