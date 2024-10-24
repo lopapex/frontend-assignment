@@ -16,6 +16,7 @@ import {useUserStorage} from '../../hooks/useUserStorage';
 import {useNavigate} from 'react-router-dom';
 import pathnames from '../../constants/pathnames';
 import {IconBackwards} from '../../constants/icons';
+import {useState} from 'react';
 
 type TopBarProps = BoxProps;
 
@@ -24,6 +25,7 @@ export const TopBar = ({...props}: TopBarProps) => {
   const navigate = useNavigate();
 
   const {user, onLogout} = useUserStorage();
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
   return (
     <Center width="100vw">
@@ -46,15 +48,27 @@ export const TopBar = ({...props}: TopBarProps) => {
           </Text>
         </HStack>
         {!!user && (
-          <Popover>
+          <Popover isOpen={isPopoverOpen}>
             <PopoverTrigger>
-              <Text fontSize="base" fontWeight="base" _hover={{cursor: 'pointer', opacity: '0.8'}}>
+              <Text
+                fontSize="base"
+                fontWeight="base"
+                _hover={{cursor: 'pointer', opacity: '0.8'}}
+                onClick={() => setIsPopoverOpen((prev) => !prev)}
+              >
                 {user.username}
               </Text>
             </PopoverTrigger>
             <PopoverContent padding={2} width="150px" border="none">
               <PopoverArrow />
-              <Button size={'xs'} rightIcon={<IconBackwards fill="white" />} onClick={onLogout}>
+              <Button
+                size={'xs'}
+                rightIcon={<IconBackwards fill="white" />}
+                onClick={() => {
+                  onLogout();
+                  setIsPopoverOpen(false);
+                }}
+              >
                 {t(`topBar.button`)}
               </Button>
             </PopoverContent>

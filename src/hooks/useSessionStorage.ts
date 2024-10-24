@@ -30,7 +30,7 @@ const useSessionStorage = <T>(key: string, initialValue: T) => {
   const [value, setValue] = useState<T>(() => getSessionStorageValue(key, initialValue));
 
   useEffect(() => {
-    if (!sessionStorageAvailable || !value) return;
+    if (!sessionStorageAvailable) return;
     setSessionStorageValue(key, value);
   }, [key, value, sessionStorageAvailable]);
 
