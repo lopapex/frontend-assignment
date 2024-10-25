@@ -4,7 +4,7 @@ import {Login} from './pages/Login';
 import {Register} from './pages/Register';
 import {Routes, Route, Navigate} from 'react-router-dom';
 import pathnames from './constants/pathnames';
-import {Welcome} from './pages/Welcome';
+import {Home} from './pages/Home';
 import {TopBar} from './components/ui/TopBar';
 import { Center } from '@chakra-ui/react';
 import { useUser } from './hooks/useUser';
@@ -44,7 +44,7 @@ function App() {
               path={pathnames.home}
               element={
                 <AuthenticatedRoute>
-                  <Welcome />
+                  <Home />
                 </AuthenticatedRoute>
               }
             />
@@ -53,7 +53,7 @@ function App() {
               path="*"
               element={
                 <AuthenticatedRoute>
-                  <Welcome />
+                  <Home />
                 </AuthenticatedRoute>
               }
             />

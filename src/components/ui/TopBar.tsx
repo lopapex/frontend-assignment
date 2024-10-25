@@ -10,13 +10,13 @@ import {
   PopoverArrow,
   Button,
 } from '@chakra-ui/react';
-import {ReactComponent as Logo} from '../../assets/logo.svg';
 import {useTranslation} from 'react-i18next';
 import {useNavigate} from 'react-router-dom';
 import pathnames from '../../constants/pathnames';
-import {IconBackwards} from '../../constants/icons';
+import {IconBackwards, Logo} from '../../constants/assets';
 import {useState} from 'react';
 import { useUser } from '../../hooks/useUser';
+import { CONTENT_MAX_WIDTH } from '../../constants/sizes';
 
 type TopBarProps = BoxProps;
 
@@ -33,7 +33,7 @@ export const TopBar = ({...props}: TopBarProps) => {
       <Flex
         justifyContent={!!user ? 'space-between' : 'center'}
         bg="fill-primary"
-        maxWidth="1280px"
+        maxWidth={CONTENT_MAX_WIDTH}
         width="100%"
         padding="5"
         {...props}

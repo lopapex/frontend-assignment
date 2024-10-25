@@ -1,8 +1,6 @@
 {
   "app.title": "Carvago Frontend Assignment",
   "app.description": "Assignment in React.js for developers who want to join our team.",
-  "welcome.message": "Welcome to Carvago Front-End Assignment",
-  "welcome.link": "see API docs",
 
   "topBar.title": "Zentask",
   "topBar.button": "Logout",
@@ -31,5 +29,8 @@
   "register.error": "An error has occurred. User already exists.",
 
   "refreshError.title": "Error",
-  "refreshError.description": "Access token has expired."
+  "refreshError.description": "Access token has expired.",
+
+  "home.add": "Add task",
+  "home.intro": "Hello, {{username}}!"
 }
