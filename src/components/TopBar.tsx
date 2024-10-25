@@ -1,8 +1,6 @@
 import {
-  BoxProps,
   HStack,
   Text,
-  Flex,
   Center,
   Popover,
   PopoverTrigger,
@@ -18,9 +16,8 @@ import {useState} from 'react';
 import { useUser } from '../hooks/useUser';
 import { CONTENT_MAX_WIDTH } from '../constants/sizes';
 
-type TopBarProps = BoxProps;
 
-export const TopBar = ({...props}: TopBarProps) => {
+export const TopBar = () => {
   const {t} = useTranslation();
   const navigate = useNavigate();
 
@@ -30,13 +27,12 @@ export const TopBar = ({...props}: TopBarProps) => {
 
   return (
     <Center width="100vw">
-      <Flex
+      <HStack
         justifyContent={!!user ? 'space-between' : 'center'}
         bg="fill-primary"
         maxWidth={CONTENT_MAX_WIDTH}
         width="100%"
         padding="5"
-        {...props}
       >
         <HStack
           gap="4px"
@@ -75,7 +71,7 @@ export const TopBar = ({...props}: TopBarProps) => {
             </PopoverContent>
           </Popover>
         )}
-      </Flex>
+      </HStack>
     </Center>
   );
 };
