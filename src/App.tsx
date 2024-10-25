@@ -1,11 +1,11 @@
 import {Helmet} from 'react-helmet-async';
 import {useTranslation} from 'react-i18next';
-import {Login} from './pages/Login';
-import {Register} from './pages/Register';
+import {Login} from './pages/Auth/Login';
+import {Register} from './pages/Auth/Register';
 import {Routes, Route, Navigate} from 'react-router-dom';
 import pathnames from './constants/pathnames';
-import {Home} from './pages/Home';
-import {TopBar} from './components/ui/TopBar';
+import {Home} from './pages/Todo/Home';
+import {TopBar} from './components/TopBar';
 import { Center } from '@chakra-ui/react';
 import { useUser } from './hooks/useUser';
 

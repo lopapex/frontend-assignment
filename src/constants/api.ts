@@ -6,4 +6,6 @@ export const API_ENDPOINTS = {
   REFRESH_TOKEN: '/refresh-token',
 
   TODO_LIST: '/todo/list',
+  COMPLETE_TODO: '/todo/:id/complete',
+  INCOMPLETE_TODO: '/todo/:id/incomplete',
 };

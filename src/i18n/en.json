@@ -32,5 +32,9 @@
   "refreshError.description": "Access token has expired.",
 
   "home.add": "Add task",
-  "home.intro": "Hello, {{username}}!"
+  "home.intro": "Hello, {{username}}!",
+  "home.incomplete.title": "To-do",
+  "home.complete.title": "Completed",
+  "home.empty.title": "You are amazing!",
+  "home.empty.description": "There is no more task to do."
 }

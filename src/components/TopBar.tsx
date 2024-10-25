@@ -12,11 +12,11 @@ import {
 } from '@chakra-ui/react';
 import {useTranslation} from 'react-i18next';
 import {useNavigate} from 'react-router-dom';
-import pathnames from '../../constants/pathnames';
-import {IconBackwards, Logo} from '../../constants/assets';
+import pathnames from '../constants/pathnames';
+import {IconBackwards, Logo} from '../constants/assets';
 import {useState} from 'react';
-import { useUser } from '../../hooks/useUser';
-import { CONTENT_MAX_WIDTH } from '../../constants/sizes';
+import { useUser } from '../hooks/useUser';
+import { CONTENT_MAX_WIDTH } from '../constants/sizes';
 
 type TopBarProps = BoxProps;
 

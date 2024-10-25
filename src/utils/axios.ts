@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import {getSessionStorageValue} from './sessionStorageHelpers';
-import {SESSION_STORAGE_KEYS} from '../../constants/storageKeys';
-import {BASE_URL} from '../../constants/api';
+import {SESSION_STORAGE_KEYS} from '../constants/storageKeys';
+import {BASE_URL} from '../constants/api';
 import {UserInfo} from '../types/user';
 
 export const axios = Axios.create({

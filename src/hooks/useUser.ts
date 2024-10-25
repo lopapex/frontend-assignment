@@ -1,10 +1,14 @@
 import {useMutation} from '@tanstack/react-query';
-import axios from '../components/utils/axios';
-import {Tokens, User, UserInfo} from '../components/types/user';
+import axios from '../utils/axios';
+import {Tokens, User, UserInfo} from '../types/user';
 import {API_ENDPOINTS} from '../constants/api';
-import { useNavigate } from 'react-router-dom';
-import { getSessionStorageValue, removeSessionStorageValue, setSessionStorageValue } from '../components/utils/sessionStorageHelpers';
-import { SESSION_STORAGE_KEYS } from '../constants/storageKeys';
+import {useNavigate} from 'react-router-dom';
+import {
+  getSessionStorageValue,
+  removeSessionStorageValue,
+  setSessionStorageValue,
+} from '../utils/sessionStorageHelpers';
+import {SESSION_STORAGE_KEYS} from '../constants/storageKeys';
 import pathnames from '../constants/pathnames';
 
 export const refreshToken = async (refreshToken: string) => {
@@ -12,8 +16,10 @@ export const refreshToken = async (refreshToken: string) => {
   return data;
 };
 
-export const useRegisterMutation = () =>
-  useMutation({
+export const useRegisterMutation = () => {
+  const {onLogin} = useUser();
+
+  return useMutation({
     mutationFn: async (user: User) => {
       const {data} = await axios.post<Tokens>(API_ENDPOINTS.REGISTER, user);
 
@@ -22,10 +28,14 @@ export const useRegisterMutation = () =>
         username: user.username,
       } as UserInfo;
     },
+    onSuccess: onLogin,
   });
+};
 
-export const useLoginMutation = () =>
-  useMutation({
+export const useLoginMutation = () => {
+  const {onLogin} = useUser();
+
+  return useMutation({
     mutationFn: async (user: User) => {
       const {data} = await axios.post<Tokens>(API_ENDPOINTS.LOGIN, user);
 
@@ -34,7 +44,9 @@ export const useLoginMutation = () =>
         username: user.username,
       } as UserInfo;
     },
+    onSuccess: onLogin,
   });
+};
 
 export const useUser = () => {
   const navigate = useNavigate();

@@ -1,10 +1,10 @@
 import {Button, Link, Spinner, Stack, Text} from '@chakra-ui/react';
-import {ContentCard} from '../ui/ContentCard';
+import {ContentCard} from '../../../components/ContentCard';
 import {ReactNode} from 'react';
 import {useTranslation} from 'react-i18next';
-import {IconForward} from '../../constants/assets';
-import pathnames from '../../constants/pathnames';
-import { LOGIN_MAX_WIDTH } from '../../constants/sizes';
+import {IconForward} from '../../../constants/assets';
+import pathnames from '../../../constants/pathnames';
+import { LOGIN_MAX_WIDTH } from '../../../constants/sizes';
 
 type LoginWrapperProps = {
   type: 'login' | 'register';

@@ -4,10 +4,10 @@ import {
   removeSessionStorageValue,
   setSessionStorageValue,
 } from './sessionStorageHelpers';
-import {SESSION_STORAGE_KEYS} from '../../constants/storageKeys';
-import {refreshToken} from '../../hooks/useUser';
+import {SESSION_STORAGE_KEYS} from '../constants/storageKeys';
+import {refreshToken} from '../hooks/useUser';
 import {AxiosError} from 'axios';
-import pathnames from '../../constants/pathnames';
+import pathnames from '../constants/pathnames';
 import { UserInfo } from '../types/user';
 
 export type IErrorResponse = {
@@ -79,7 +79,11 @@ const errorHandler = (
   if (status === 401) {
     if (mutation) refreshTokenAndRetry(undefined, mutation, variables);
     else refreshTokenAndRetry(query);
-  } else console.error(data);
+  } else {
+    console.error(data);
+    removeSessionStorageValue(SESSION_STORAGE_KEYS.USER_INFO);
+    window.location.href = pathnames.login;
+  };
 };
 
 export const queryErrorHandler = (

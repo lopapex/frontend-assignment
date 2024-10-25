@@ -9,7 +9,7 @@ import './i18n/i18n';
 import theme from './theme';
 import {BrowserRouter as Router} from 'react-router-dom';
 import {MutationCache, QueryCache, QueryClient, QueryClientProvider} from '@tanstack/react-query';
-import {mutationErrorHandler, queryErrorHandler} from './components/utils/errorHandler';
+import {mutationErrorHandler, queryErrorHandler} from './utils/errorHandler';
 
 const MOUNT_NODE = document.getElementById('root');
 

@@ -1,11 +1,10 @@
 import {Input, Stack} from '@chakra-ui/react';
 import {useTranslation} from 'react-i18next';
 import {useForm} from 'react-hook-form';
-import {Field} from '../components/ui/Field';
-import {PasswordField} from '../components/ui/PasswordField';
-import {LoginWrapper} from '../components/elements/LoginWrapper';
-import {useLoginMutation, useUser} from '../hooks/useUser';
-import {useEffect} from 'react';
+import {Field} from '../../components/Field';
+import {PasswordField} from '../../components/PasswordField';
+import {LoginWrapper} from './components/LoginWrapper';
+import {useLoginMutation} from '../../hooks/useUser';
 
 type FormValues = {
   userName: string;
@@ -17,18 +16,9 @@ export const Login = () => {
 
   const {
     mutate: loginUser,
-    data: user,
     isError,
-    isSuccess,
     isPending: isLoading,
   } = useLoginMutation();
-  const {onLogin} = useUser();
-
-  useEffect(() => {
-    if (isSuccess) {
-      onLogin(user);
-    }
-  }, [isSuccess, onLogin]);
 
   const {
     register,
