@@ -6,8 +6,11 @@ import {Routes, Route, Navigate} from 'react-router-dom';
 import pathnames from './constants/pathnames';
 import {Home} from './pages/Todo/Home';
 import {TopBar} from './components/TopBar';
-import { Center } from '@chakra-ui/react';
-import { useUser } from './hooks/useUser';
+import {useUser} from './hooks/useUser';
+import {AnimatePresence} from 'framer-motion';
+import AnimatedLayout from './components/AnimatedLayout';
+import {ContentCard} from './components/ContentCard';
+import {CONTENT_MAX_WIDTH, LOGIN_MAX_WIDTH} from './constants/sizes';
 
 const AuthenticatedRoute = ({children}: {children: JSX.Element}) => {
   const {getUser} = useUser();
@@ -21,6 +24,7 @@ const AuthenticatedRoute = ({children}: {children: JSX.Element}) => {
 
 function App() {
   const {i18n, t} = useTranslation();
+  const {getUser} = useUser();
 
   return (
     <>
@@ -34,31 +38,50 @@ function App() {
 
       <>
         <TopBar />
+        <AnimatePresence>
+          <ContentCard maxWidth={getUser() ? CONTENT_MAX_WIDTH : LOGIN_MAX_WIDTH} width="100%">
+            <Routes>
+              <Route
+                path={pathnames.login}
+                element={
+                  <AnimatedLayout>
+                    <Login />
+                  </AnimatedLayout>
+                }
+              />
+              <Route
+                path={pathnames.register}
+                element={
+                  <AnimatedLayout>
+                    <Register />
+                  </AnimatedLayout>
+                }
+              />
 
-        <Center>
-          <Routes>
-            <Route path={pathnames.login} element={<Login />} />
-            <Route path={pathnames.register} element={<Register />} />
-
-            <Route
-              path={pathnames.home}
-              element={
-                <AuthenticatedRoute>
-                  <Home />
-                </AuthenticatedRoute>
-              }
-            />
-            {/* If path does not match navigate to first available page */}
-            <Route
-              path="*"
-              element={
-                <AuthenticatedRoute>
-                  <Home />
-                </AuthenticatedRoute>
-              }
-            />
-          </Routes>
-        </Center>
+              <Route
+                path={pathnames.home}
+                element={
+                  <AuthenticatedRoute>
+                    <AnimatedLayout>
+                      <Home />
+                    </AnimatedLayout>
+                  </AuthenticatedRoute>
+                }
+              />
+              {/* If path does not match navigate to first available page */}
+              <Route
+                path="*"
+                element={
+                  <AuthenticatedRoute>
+                    <AnimatedLayout>
+                      <Home />
+                    </AnimatedLayout>
+                  </AuthenticatedRoute>
+                }
+              />
+            </Routes>
+          </ContentCard>
+        </AnimatePresence>
       </>
     </>
   );

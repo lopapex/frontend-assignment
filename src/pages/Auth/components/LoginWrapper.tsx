@@ -1,10 +1,8 @@
 import {Button, Link, Spinner, Stack, Text} from '@chakra-ui/react';
-import {ContentCard} from '../../../components/ContentCard';
 import {ReactNode} from 'react';
 import {useTranslation} from 'react-i18next';
 import {IconForward} from '../../../constants/assets';
 import pathnames from '../../../constants/pathnames';
-import { LOGIN_MAX_WIDTH } from '../../../constants/sizes';
 
 type LoginWrapperProps = {
   type: 'login' | 'register';
@@ -19,36 +17,34 @@ export const LoginWrapper = ({type, onSubmit, isLoading, children}: LoginWrapper
   const isLogin = type === 'login';
 
   return (
-    <ContentCard maxWidth={LOGIN_MAX_WIDTH}>
-      <Stack gap="24px">
-        <Text fontSize="heading.1" fontWeight="heading.1" color="text-primary">
-          {t(`${type}.title`)}
-        </Text>
-        <Text fontSize="base" fontWeight="base" color="text-secondary">
-          {t(`${type}.description`)}
-        </Text>
-        <form onSubmit={onSubmit} noValidate>
-          <Stack gap="24px">
-            {children}
+    <Stack gap="24px">
+      <Text fontSize="heading.1" fontWeight="heading.1" color="text-primary">
+        {t(`${type}.title`)}
+      </Text>
+      <Text fontSize="base" fontWeight="base" color="text-secondary">
+        {t(`${type}.description`)}
+      </Text>
+      <form onSubmit={onSubmit} noValidate>
+        <Stack gap="24px">
+          {children}
 
-            <Stack gap="4px">
-              <Button
-                rightIcon={!isLoading ? <IconForward fill="white" /> : undefined}
-                type="submit"
-                disabled={isLoading}
-              >
-                {isLoading ? <Spinner color="fill-white" /> : t(`${type}.button`)}
-              </Button>
-              <Text fontSize="base" fontWeight="base" color="text-secondary">
-                {t(`${type}.footer`)}{' '}
-                <Link color="fill-brand" href={isLogin ? pathnames.register : pathnames.login}>
-                  {t(`${type}.footerLink`)}
-                </Link>
-              </Text>
-            </Stack>
+          <Stack gap="4px">
+            <Button
+              rightIcon={!isLoading ? <IconForward fill="white" /> : undefined}
+              type="submit"
+              disabled={isLoading}
+            >
+              {isLoading ? <Spinner color="fill-white" /> : t(`${type}.button`)}
+            </Button>
+            <Text fontSize="base" fontWeight="base" color="text-secondary">
+              {t(`${type}.footer`)}{' '}
+              <Link color="fill-brand" href={isLogin ? pathnames.register : pathnames.login}>
+                {t(`${type}.footerLink`)}
+              </Link>
+            </Text>
           </Stack>
-        </form>
-      </Stack>
-    </ContentCard>
+        </Stack>
+      </form>
+    </Stack>
   );
 };
