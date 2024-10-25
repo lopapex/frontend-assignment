@@ -14,11 +14,7 @@ type FormValues = {
 export const Login = () => {
   const {t} = useTranslation();
 
-  const {
-    mutate: loginUser,
-    isError,
-    isPending: isLoading,
-  } = useLoginMutation();
+  const {mutate: loginUser, isError, isPending: isLoading} = useLoginMutation();
 
   const {
     register,
@@ -35,13 +31,16 @@ export const Login = () => {
 
   return (
     <LoginWrapper type="login" isLoading={isLoading} onSubmit={onSubmit}>
-      <Field label={t('login.username')} isInvalid={!!errors.userName}>
-        <Input {...register('userName')} />
+      <Field label={t('login.username')}>
+        <Input {...register('userName', {required: t('input.required')})} />
       </Field>
 
       <Stack gap="4px">
-        <PasswordField label={t('login.password')} isInvalid={!!errors.password}>
-          <Input placeholder={t('login.password.placeholder')} {...register('password')} />
+        <PasswordField label={t('login.password')} errorMessage={errors.password?.message}>
+          <Input
+            placeholder={t('login.password.placeholder')}
+            {...register('password', {required: t('input.required')})}
+          />
         </PasswordField>
 
         {isError && <span style={{color: 'red'}}>{t('register.error')}</span>}

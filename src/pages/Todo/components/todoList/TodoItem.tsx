@@ -21,7 +21,7 @@ export const TodoItem = ({item}: TodoItemProps) => {
           {item.title}
         </Text>
         <IconButton
-          size="xs"
+          size="sm"
           bg="inherit"
           icon={<IconMore fill="fill-darkBlue" />}
           aria-label="actions"

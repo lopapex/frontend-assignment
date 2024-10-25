@@ -11,6 +11,7 @@ export const CheckMark = ({isChecked, onChange}: CheckMarkProps) => {
   const theme = useTheme();
 
   return (
+    // v2 has warnings about the sx prop React does not recognize the `isChecked` prop on a DOM element
     <Checkbox
       isChecked={isChecked}
       onChange={e => onChange(e.target.checked)}

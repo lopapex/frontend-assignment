@@ -1,7 +1,7 @@
 import {Button, Text, Stack} from '@chakra-ui/react';
 import {useTranslation} from 'react-i18next';
 import {useTodoList} from './hooks/useTodo';
-import {useEffect, useMemo} from 'react';
+import {useMemo} from 'react';
 import {ContentCard} from '../../components/ContentCard';
 import {CONTENT_MAX_WIDTH} from '../../constants/sizes';
 import {IconAdd} from '../../constants/assets';
@@ -30,10 +30,6 @@ export const Home = () => {
       return [];
     }
     return data.todos.filter((todo) => !todo.completed);
-  }, [data]);
-
-  useEffect(() => {
-    console.log(data);
   }, [data]);
 
   return (

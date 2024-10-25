@@ -1,15 +1,16 @@
-import {FormControl, FormLabel} from '@chakra-ui/react';
+import {FormControl, FormErrorMessage, FormLabel} from '@chakra-ui/react';
 import {ReactElement} from 'react';
 
 type FieldProps = {
   label: string;
-  isInvalid?: boolean;
+  errorMessage?: string;
   children: ReactElement;
 };
 
-export const Field = ({children, label, isInvalid}: FieldProps) => (
-  <FormControl isInvalid={isInvalid} isRequired>
+export const Field = ({children, label, errorMessage}: FieldProps) => (
+  <FormControl isInvalid={!!errorMessage} isRequired>
     <FormLabel>{label}</FormLabel>
     {children}
+    {errorMessage && <FormErrorMessage>{errorMessage}</FormErrorMessage>}
   </FormControl>
 );

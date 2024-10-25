@@ -27,7 +27,7 @@ export const LoginWrapper = ({type, onSubmit, isLoading, children}: LoginWrapper
         <Text fontSize="base" fontWeight="base" color="text-secondary">
           {t(`${type}.description`)}
         </Text>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} noValidate>
           <Stack gap="24px">
             {children}
 

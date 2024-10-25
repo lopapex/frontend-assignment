@@ -15,12 +15,7 @@ type FormValues = {
 export const Register = () => {
   const {t} = useTranslation();
 
-  const {
-    mutate: registerUser,
-    isError,
-    isPending: isLoading,
-  } = useRegisterMutation();
-
+  const {mutate: registerUser, isError, isPending: isLoading} = useRegisterMutation();
 
   const {
     register,
@@ -40,32 +35,38 @@ export const Register = () => {
 
   return (
     <LoginWrapper type="register" isLoading={isLoading} onSubmit={onSubmit}>
-      <Field label={t('register.username')} isInvalid={!!errors.userName}>
-        <Input {...register('userName', {required: true})} />
+      <Field label={t('register.username')} errorMessage={errors.userName?.message}>
+        <Input {...register('userName', {required: t('input.required')})} />
       </Field>
 
-      <PasswordField label={t('register.password')} isInvalid={!!errors.password}>
+      <PasswordField label={t('register.password')} errorMessage={errors.password?.message}>
         <Input
           placeholder={t('register.password.placeholder')}
-          {...register('password', {required: true})}
+          {...register('password', {required: t('input.required')})}
         />
       </PasswordField>
 
       <Stack gap="4px">
-        <PasswordField label={t('register.password.confirm')} isInvalid={!!errors.passwordConfirm}>
+        <PasswordField
+          label={t('register.password.confirm')}
+          errorMessage={(() => {
+            if (errors.passwordConfirm) {
+              return errors.passwordConfirm?.message;
+            }
+            if (isError) {
+              return t('register.password.error');
+            }
+            return undefined;
+          })()}
+        >
           <Input
             placeholder={t('register.password.confirm.placeholder')}
             {...register('passwordConfirm', {
-              required: true,
+              required: t('input.required'),
               validate: (value) => value === password || t('register.password.error'),
             })}
           />
         </PasswordField>
-        {errors.passwordConfirm && (
-          <span style={{color: 'red'}}>{errors.passwordConfirm.message}</span>
-        )}
-
-        {isError && <span style={{color: 'red'}}>{t('register.error')}</span>}
       </Stack>
     </LoginWrapper>
   );

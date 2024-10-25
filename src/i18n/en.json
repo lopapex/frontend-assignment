@@ -30,6 +30,7 @@
 
   "refreshError.title": "Error",
   "refreshError.description": "Access token has expired.",
+  "input.required": "This field is mandatory.",
 
   "home.add": "Add task",
   "home.intro": "Hello, {{username}}!",

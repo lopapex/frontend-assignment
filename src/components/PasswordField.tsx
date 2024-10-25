@@ -5,11 +5,11 @@ import { Field } from './Field';
 
 type PasswordFieldProps = {
   label: string;
-  isInvalid?: boolean;
+  errorMessage?: string;
   children: ReactElement;
 };
 
-export const PasswordField = ({children, label, isInvalid}: PasswordFieldProps) => {
+export const PasswordField = ({children, label, errorMessage}: PasswordFieldProps) => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
 
@@ -17,7 +17,7 @@ export const PasswordField = ({children, label, isInvalid}: PasswordFieldProps) 
 
   return (
     <InputGroup>
-      <Field label={label} isInvalid={isInvalid}>
+      <Field label={label} errorMessage={errorMessage}>
         {cloneElement(children, {type: show ? 'text' : 'password'})}
       </Field>
       <InputRightElement
