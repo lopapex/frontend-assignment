@@ -1,17 +1,18 @@
-import {Button, Link, Stack, Text} from '@chakra-ui/react';
+import {Button, Link, Spinner, Stack, Text} from '@chakra-ui/react';
 import {ContentCard} from '../ui/ContentCard';
 import {ReactNode} from 'react';
-import { useTranslation } from 'react-i18next';
-import { IconForward } from '../../constants/icons';
+import {useTranslation} from 'react-i18next';
+import {IconForward} from '../../constants/icons';
 import pathnames from '../../constants/pathnames';
 
 type LoginWrapperProps = {
   type: 'login' | 'register';
+  isLoading?: boolean;
   onSubmit: () => void;
   children: ReactNode;
 };
 
-export const LoginWrapper = ({type, onSubmit, children}: LoginWrapperProps) => {
+export const LoginWrapper = ({type, onSubmit, isLoading, children}: LoginWrapperProps) => {
   const {t} = useTranslation();
 
   const isLogin = type === 'login';
@@ -30,8 +31,12 @@ export const LoginWrapper = ({type, onSubmit, children}: LoginWrapperProps) => {
             {children}
 
             <Stack gap="4px">
-              <Button rightIcon={<IconForward fill="white" />} type="submit">
-                {t(`${type}.button`)}
+              <Button
+                rightIcon={!isLoading ? <IconForward fill="white" /> : undefined}
+                type="submit"
+                disabled={isLoading}
+              >
+                {isLoading ? <Spinner color="fill-white" /> : t(`${type}.button`)}
               </Button>
               <Text fontSize="base" fontWeight="base" color="text-secondary">
                 {t(`${type}.footer`)}{' '}

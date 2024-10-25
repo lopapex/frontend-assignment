@@ -5,6 +5,8 @@ import {Field} from '../components/ui/Field';
 import {PasswordField} from '../components/ui/PasswordField';
 import {LoginWrapper} from '../components/elements/LoginWrapper';
 import {useRegisterMutation} from '../hooks/useUser';
+import {useUser} from '../hooks/useUserStorage';
+import {useEffect} from 'react';
 
 type FormValues = {
   userName: string;
@@ -15,7 +17,20 @@ type FormValues = {
 export const Register = () => {
   const {t} = useTranslation();
 
-  const {mutate: registerUser, isError} = useRegisterMutation();
+  const {
+    mutate: registerUser,
+    data: user,
+    isError,
+    isSuccess,
+    isPending: isLoading,
+  } = useRegisterMutation();
+  const {onLogin} = useUser();
+
+  useEffect(() => {
+    if (isSuccess) {
+      onLogin(user);
+    }
+  }, [isSuccess, onLogin]);
 
   const {
     register,
@@ -35,7 +50,7 @@ export const Register = () => {
 
   return (
     <Center width="100wv">
-      <LoginWrapper type="register" onSubmit={onSubmit}>
+      <LoginWrapper type="register" isLoading={isLoading} onSubmit={onSubmit}>
         <Field label={t('register.username')} isInvalid={!!errors.userName}>
           <Input {...register('userName', {required: true})} />
         </Field>

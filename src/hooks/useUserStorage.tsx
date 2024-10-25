@@ -1,12 +1,12 @@
 import {createContext, ReactElement, useContext} from 'react';
-import useSessionStorage from './useSessionStorage';
-import {UserInfo} from './useUser';
+import { getSessionStorageValue, removeSessionStorageValue, setSessionStorageValue } from '../components/utils/sessionStorageHelpers';
 import {SESSION_STORAGE_KEYS} from '../constants/storageKeys';
 import { useNavigate } from 'react-router-dom';
 import pathnames from '../constants/pathnames';
+import { UserInfo } from '../components/types/user';
 
 type UserStorageStorageState = {
-  user: UserInfo | undefined;
+  getUser: () => UserInfo;
   onLogin: (user: UserInfo) => void;
   onLogout: () => void;
 };
@@ -19,10 +19,20 @@ type props = {
 
 export const UserStorageStorageProvider = ({children}: props) => {
   const navigate = useNavigate();
-  const [user, setUser] = useSessionStorage<UserInfo | undefined>(
-    SESSION_STORAGE_KEYS.USER_INFO,
-    undefined
-  );
+
+  const getUser = () => {
+    const userInfo = getSessionStorageValue(SESSION_STORAGE_KEYS.USER_INFO, undefined) as UserInfo;
+    return userInfo;
+  }
+
+  const setUser = (data: UserInfo) => {
+    data.accessToken = data.accessToken;
+    setSessionStorageValue(SESSION_STORAGE_KEYS.USER_INFO, data);
+  };
+
+  const removeUser = () => {
+    removeSessionStorageValue(SESSION_STORAGE_KEYS.USER_INFO);
+  };
 
   const onLogin = (data: UserInfo) => {
     setUser(data);
@@ -31,13 +41,13 @@ export const UserStorageStorageProvider = ({children}: props) => {
   };
 
   const onLogout = () => {
-    setUser(undefined);
+    removeUser();
     navigate(pathnames.login);
   };
 
   return (
     <UserStorageStorageContext.Provider value={{
-      user,
+      getUser,
       onLogin,
       onLogout,
     }}>
@@ -46,4 +56,11 @@ export const UserStorageStorageProvider = ({children}: props) => {
   );
 };
 
-export const useUserStorage = () => useContext(UserStorageStorageContext);
+export const useUser = () => {
+  const {getUser, onLogin, onLogout} = useContext(UserStorageStorageContext);
+  return {
+    getUser,
+    onLogin,
+    onLogout,
+  };
+};

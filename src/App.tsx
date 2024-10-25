@@ -6,12 +6,12 @@ import {Routes, Route, Navigate} from 'react-router-dom';
 import pathnames from './constants/pathnames';
 import {Welcome} from './pages/Welcome';
 import {TopBar} from './components/ui/TopBar';
-import {useUserStorage} from './hooks/useUserStorage';
+import {useUser} from './hooks/useUserStorage';
 
 const AuthenticatedRoute = ({children}: {children: JSX.Element}) => {
-  const {user} = useUserStorage();
+  const {getUser} = useUser();
 
-  if (!user) {
+  if (!getUser()) {
     return <Navigate to={pathnames.login} />;
   }
 

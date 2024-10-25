@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react';
 import {ReactComponent as Logo} from '../../assets/logo.svg';
 import {useTranslation} from 'react-i18next';
-import {useUserStorage} from '../../hooks/useUserStorage';
+import {useUser} from '../../hooks/useUserStorage';
 import {useNavigate} from 'react-router-dom';
 import pathnames from '../../constants/pathnames';
 import {IconBackwards} from '../../constants/icons';
@@ -24,8 +24,9 @@ export const TopBar = ({...props}: TopBarProps) => {
   const {t} = useTranslation();
   const navigate = useNavigate();
 
-  const {user, onLogout} = useUserStorage();
+  const {getUser, onLogout} = useUser();
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const user = getUser();
 
   return (
     <Center width="100vw">

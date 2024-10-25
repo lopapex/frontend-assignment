@@ -1,46 +1,33 @@
-import {useMutation} from 'react-query';
-import api from '../services/api';
-import {Tokens, User} from '../api/generated';
-import { useUserStorage } from './useUserStorage';
+import {useMutation} from '@tanstack/react-query';
+import axios from '../components/utils/axios';
+import { Tokens, User, UserInfo } from '../components/types/user';
+import { API_ENDPOINTS } from '../constants/api';
 
-export type UserInfo = {
-  username: string;
-} & Tokens;
+export const refreshToken = async (refreshToken: string) => {
+  const {data} = await axios.post(API_ENDPOINTS.REFRESH_TOKEN, {refreshToken: refreshToken!});
+  return data;
+};
 
-export const useRegisterMutation = () => {
-  const {onLogin} = useUserStorage();
-  return useMutation<UserInfo, unknown, User>(
-    ['register'],
-    async (user: User) => {
-      const data = await api.user.registerUser({
-        user,
-      });
+export const useRegisterMutation = () =>
+  useMutation({
+    mutationFn: async (user: User) => {
+      const {data} = await axios.post<Tokens>(API_ENDPOINTS.REGISTER, user);
+
       return {
         ...data,
         username: user.username,
       } as UserInfo;
     },
-    {
-      onSuccess: onLogin,
-    }
-  );
-};
+  });
 
-export const useLoginMutation = () => {
-  const {onLogin} = useUserStorage();
-  return useMutation<UserInfo, unknown, User>(
-    ['login'],
-    async (user: User) => {
-      const data = await api.user.loginUser({
-        user,
-      });
+export const useLoginMutation = () =>
+  useMutation({
+    mutationFn: async (user: User) => {
+      const {data} = await axios.post<Tokens>(API_ENDPOINTS.LOGIN, user);
+
       return {
         ...data,
         username: user.username,
-      };
+      } as UserInfo;
     },
-    {
-      onSuccess: onLogin,
-    }
-  );
-}
+  });

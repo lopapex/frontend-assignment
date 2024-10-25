@@ -1,5 +1,3 @@
-import { useState, useEffect } from 'react';
-
 export const isSessionStorageAvailable = () => {
   try {
     const testKey = '__some_random_key__';
@@ -25,16 +23,8 @@ export const setSessionStorageValue = <T>(key: string, value: T) => {
   }
 };
 
-const useSessionStorage = <T>(key: string, initialValue: T) => {
-  const sessionStorageAvailable = isSessionStorageAvailable();
-  const [value, setValue] = useState<T>(() => getSessionStorageValue(key, initialValue));
-
-  useEffect(() => {
-    if (!sessionStorageAvailable) return;
-    setSessionStorageValue(key, value);
-  }, [key, value, sessionStorageAvailable]);
-
-  return [value, setValue] as const;
+export const removeSessionStorageValue = (key: string) => {
+  if (isSessionStorageAvailable()) {
+    sessionStorage.removeItem(key);
+  }
 };
-
-export default useSessionStorage;
