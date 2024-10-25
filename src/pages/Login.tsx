@@ -1,4 +1,4 @@
-import {Center, Input, Stack} from '@chakra-ui/react';
+import {Input, Stack} from '@chakra-ui/react';
 import {useTranslation} from 'react-i18next';
 import {useForm} from 'react-hook-form';
 import {Field} from '../components/ui/Field';
@@ -48,20 +48,18 @@ export const Login = () => {
   });
 
   return (
-    <Center width="100wv">
-      <LoginWrapper type="login" isLoading={isLoading} onSubmit={onSubmit}>
-        <Field label={t('login.username')} isInvalid={!!errors.userName}>
-          <Input {...register('userName')} />
-        </Field>
+    <LoginWrapper type="login" isLoading={isLoading} onSubmit={onSubmit}>
+      <Field label={t('login.username')} isInvalid={!!errors.userName}>
+        <Input {...register('userName')} />
+      </Field>
 
-        <Stack gap="4px">
-          <PasswordField label={t('login.password')} isInvalid={!!errors.password}>
-            <Input placeholder={t('login.password.placeholder')} {...register('password')} />
-          </PasswordField>
+      <Stack gap="4px">
+        <PasswordField label={t('login.password')} isInvalid={!!errors.password}>
+          <Input placeholder={t('login.password.placeholder')} {...register('password')} />
+        </PasswordField>
 
-          {isError && <span style={{color: 'red'}}>{t('register.error')}</span>}
-        </Stack>
-      </LoginWrapper>
-    </Center>
+        {isError && <span style={{color: 'red'}}>{t('register.error')}</span>}
+      </Stack>
+    </LoginWrapper>
   );
 };

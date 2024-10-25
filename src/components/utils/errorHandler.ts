@@ -10,7 +10,7 @@ import {AxiosError} from 'axios';
 import pathnames from '../../constants/pathnames';
 import { UserInfo } from '../types/user';
 
-export interface IErrorResponse {
+export type IErrorResponse = {
   message: string;
 }
 
@@ -23,10 +23,6 @@ const setAccessToken = (newToken: string) => {
   const userInfo = getSessionStorageValue(SESSION_STORAGE_KEYS.USER_INFO, undefined) as UserInfo;
   userInfo.accessToken = newToken;
   setSessionStorageValue(SESSION_STORAGE_KEYS.USER_INFO, JSON.stringify(userInfo));
-};
-
-const removeUserInfo = () => {
-  removeSessionStorageValue(SESSION_STORAGE_KEYS.USER_INFO);
 };
 
 type QueueItem = {
@@ -69,7 +65,7 @@ const refreshTokenAndRetry = async (
       processFailedQueue();
     } else failedQueue.push({ query, mutation, variables });
   } catch {
-    removeUserInfo();
+    removeSessionStorageValue(SESSION_STORAGE_KEYS.USER_INFO);
     window.location.href = pathnames.login;
   }
 };

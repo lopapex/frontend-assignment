@@ -7,6 +7,7 @@ import pathnames from './constants/pathnames';
 import {Welcome} from './pages/Welcome';
 import {TopBar} from './components/ui/TopBar';
 import {useUser} from './hooks/useUserStorage';
+import { Center } from '@chakra-ui/react';
 
 const AuthenticatedRoute = ({children}: {children: JSX.Element}) => {
   const {getUser} = useUser();
@@ -34,28 +35,30 @@ function App() {
       <>
         <TopBar />
 
-        <Routes>
-          <Route path={pathnames.login} element={<Login />} />
-          <Route path={pathnames.register} element={<Register />} />
+        <Center>
+          <Routes>
+            <Route path={pathnames.login} element={<Login />} />
+            <Route path={pathnames.register} element={<Register />} />
 
-          <Route
-            path={pathnames.home}
-            element={
-              <AuthenticatedRoute>
-                <Welcome />
-              </AuthenticatedRoute>
-            }
-          />
-          {/* If path does not match navigate to first available page */}
-          <Route
-            path="*"
-            element={
-              <AuthenticatedRoute>
-                <Welcome />
-              </AuthenticatedRoute>
-            }
-          />
-        </Routes>
+            <Route
+              path={pathnames.home}
+              element={
+                <AuthenticatedRoute>
+                  <Welcome />
+                </AuthenticatedRoute>
+              }
+            />
+            {/* If path does not match navigate to first available page */}
+            <Route
+              path="*"
+              element={
+                <AuthenticatedRoute>
+                  <Welcome />
+                </AuthenticatedRoute>
+              }
+            />
+          </Routes>
+        </Center>
       </>
     </>
   );
