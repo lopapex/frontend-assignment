@@ -13,9 +13,8 @@ import {useNavigate} from 'react-router-dom';
 import pathnames from '../constants/pathnames';
 import {IconBackwards, Logo} from '../constants/assets';
 import {useState} from 'react';
-import { useUser } from '../hooks/useUser';
-import { CONTENT_MAX_WIDTH } from '../constants/sizes';
-
+import {useUser} from '../hooks/useUser';
+import {CONTENT_MAX_WIDTH} from '../constants/sizes';
 
 export const TopBar = () => {
   const {t} = useTranslation();
@@ -45,7 +44,7 @@ export const TopBar = () => {
           </Text>
         </HStack>
         {!!user && (
-          <Popover isOpen={isPopoverOpen}>
+          <Popover isOpen={isPopoverOpen} placement="bottom-end">
             <PopoverTrigger>
               <Text
                 fontSize="base"
