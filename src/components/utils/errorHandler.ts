@@ -56,11 +56,9 @@ const refreshTokenAndRetry = async (
 ) => {
   try {
     if (!isRefreshing) {
-      console.log('refreshing', getUserInfo().accessToken);
       isRefreshing = true;
       failedQueue.push({ query, mutation, variables });
       const {accessToken} = await refreshToken(getUserInfo().refreshToken);
-      console.log('new token', accessToken);
       setAccessToken(accessToken as string);
       processFailedQueue();
     } else failedQueue.push({ query, mutation, variables });

@@ -22,11 +22,8 @@ export const Login = () => {
     isError,
     isSuccess,
     isPending: isLoading,
-    error,
   } = useLoginMutation();
   const {onLogin} = useUser();
-
-  console.log(error);
 
   useEffect(() => {
     if (isSuccess) {
