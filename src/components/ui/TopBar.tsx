@@ -12,11 +12,11 @@ import {
 } from '@chakra-ui/react';
 import {ReactComponent as Logo} from '../../assets/logo.svg';
 import {useTranslation} from 'react-i18next';
-import {useUser} from '../../hooks/useUserStorage';
 import {useNavigate} from 'react-router-dom';
 import pathnames from '../../constants/pathnames';
 import {IconBackwards} from '../../constants/icons';
 import {useState} from 'react';
+import { useUser } from '../../hooks/useUser';
 
 type TopBarProps = BoxProps;
 

@@ -6,8 +6,8 @@ import {Routes, Route, Navigate} from 'react-router-dom';
 import pathnames from './constants/pathnames';
 import {Welcome} from './pages/Welcome';
 import {TopBar} from './components/ui/TopBar';
-import {useUser} from './hooks/useUserStorage';
 import { Center } from '@chakra-ui/react';
+import { useUser } from './hooks/useUser';
 
 const AuthenticatedRoute = ({children}: {children: JSX.Element}) => {
   const {getUser} = useUser();

@@ -4,8 +4,7 @@ import {useForm} from 'react-hook-form';
 import {Field} from '../components/ui/Field';
 import {PasswordField} from '../components/ui/PasswordField';
 import {LoginWrapper} from '../components/elements/LoginWrapper';
-import {useRegisterMutation} from '../hooks/useUser';
-import {useUser} from '../hooks/useUserStorage';
+import {useRegisterMutation, useUser} from '../hooks/useUser';
 import {useEffect} from 'react';
 
 type FormValues = {
