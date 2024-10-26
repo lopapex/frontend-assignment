@@ -18,8 +18,6 @@ export const TodoDetail = () => {
   const {mutate: updateStatus} = useTodoStatus(() => navigate(-1));
   const {mutate: deleteTodo} = useTodoDelete(t('deleteTodo.success'), () => navigate(-1));
 
-  console.log(todoItem);
-
   return (
     <Stack gap="10">
       <SubPageHeader title={todoItem?.title || ''} />
