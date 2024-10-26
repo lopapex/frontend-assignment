@@ -1,4 +1,4 @@
-import {Button, Input, Stack, Textarea, useTheme} from '@chakra-ui/react';
+import {Button, Input, Spinner, Stack, Textarea, useTheme} from '@chakra-ui/react';
 import {useTranslation} from 'react-i18next';
 import {SubPageHeader} from '../../components/SubPageHeader';
 import {useForm} from 'react-hook-form';
@@ -9,7 +9,7 @@ import {CreateTodoPayload} from '../../types/todo';
 import {useNavigate, useParams} from 'react-router-dom';
 import {LoadingState} from './components/LoadingState';
 import pathnames from '../../constants/pathnames';
-import { useEffect } from 'react';
+import {useEffect} from 'react';
 
 export const TodoForm = () => {
   const {t} = useTranslation();
@@ -22,7 +22,7 @@ export const TodoForm = () => {
 
   const {data: todoItem, isLoading} = useTodo(id);
 
-  const {mutate: updateTodo} = useTodoUpdate(id, t(`${i18nKey}.success`));
+  const {mutate: updateTodo, isPending} = useTodoUpdate(id, t(`${i18nKey}.success`));
 
   const {
     register,
@@ -78,7 +78,7 @@ export const TodoForm = () => {
                 rightIcon={<IconCheck fill={theme.colors['fill-white']} />}
                 type="submit"
               >
-                {t(`${i18nKey}.save`)}
+                {isPending ? <Spinner color="fill-white" /> : t(`${i18nKey}.save`)}
               </Button>
             </Stack>
           </Stack>

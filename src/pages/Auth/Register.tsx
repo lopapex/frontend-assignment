@@ -35,7 +35,18 @@ export const Register = () => {
 
   return (
     <LoginWrapper type="register" isLoading={isLoading} onSubmit={onSubmit}>
-      <Field label={t('register.username')} errorMessage={errors.userName?.message}>
+      <Field
+        label={t('register.username')}
+        errorMessage={(() => {
+          if (errors.userName) {
+            return errors.userName?.message;
+          }
+          if (isError) {
+            return t('register.error');
+          }
+          return undefined;
+        })()}
+      >
         <Input {...register('userName', {required: t('input.required')})} />
       </Field>
 
@@ -49,15 +60,7 @@ export const Register = () => {
       <Stack gap="4px">
         <PasswordField
           label={t('register.password.confirm')}
-          errorMessage={(() => {
-            if (errors.passwordConfirm) {
-              return errors.passwordConfirm?.message;
-            }
-            if (isError) {
-              return t('register.password.error');
-            }
-            return undefined;
-          })()}
+          errorMessage={errors.passwordConfirm?.message}
         >
           <Input
             placeholder={t('register.password.confirm.placeholder')}

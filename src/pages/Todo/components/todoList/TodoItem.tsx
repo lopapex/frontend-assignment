@@ -15,9 +15,9 @@ import {CheckMark} from '../../../../components/CheckMark';
 import {IconDelete, IconEdit, IconMore} from '../../../../constants/assets';
 import {useTodoDelete, useTodoStatus} from '../../hooks/useTodo';
 import {OpacityTransitionWrapper} from '../../../../components/OpacityTransitionWrapper';
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import pathnames from '../../../../constants/pathnames';
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 
 type TodoItemProps = {
   item: Todo;
@@ -38,7 +38,14 @@ export const TodoItem = ({item}: TodoItemProps) => {
             isChecked={item.completed}
             onChange={(newStatus) => updateStatus({id: item.id, completed: newStatus})}
           />
-          <Text width="100%" fontSize="heading.3" fontWeight="heading.3" color="text-primary">
+          <Text
+            _hover={{opacity: 0.6, cursor: 'pointer'}}
+            onClick={() => console.log('clicked')}
+            width="100%"
+            fontSize="heading.3"
+            fontWeight="heading.3"
+            color="text-primary"
+          >
             {item.title}
           </Text>
 
@@ -56,7 +63,7 @@ export const TodoItem = ({item}: TodoItemProps) => {
               <PopoverArrow />
               <Button
                 size="sm"
-                variant='tertiary'
+                variant="tertiary"
                 justifyContent="flex-start"
                 leftIcon={<IconEdit fill="fill-primary" />}
                 onClick={() => navigate(`${pathnames.todoForm}/${item.id}`)}
@@ -65,7 +72,7 @@ export const TodoItem = ({item}: TodoItemProps) => {
               </Button>
               <Button
                 size="sm"
-                variant='tertiary'
+                variant="tertiary"
                 color="text-danger"
                 leftIcon={<IconDelete fill={theme.colors['text-danger']} />}
                 justifyContent="flex-start"

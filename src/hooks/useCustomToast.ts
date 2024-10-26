@@ -14,6 +14,8 @@ export const useCustomToast = () => {
       title,
       status,
       duration: 2000,
+      isClosable: true,
+      position: 'bottom-right',
     });
   };
 

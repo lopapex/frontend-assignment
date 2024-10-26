@@ -44,7 +44,7 @@ export const useTodoStatus = () => {
       }
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({queryKey: ['todoList']});
+      queryClient.invalidateQueries({queryKey: ['todoList', 'todo']});
     },
   });
 };
@@ -64,7 +64,7 @@ export const useTodoUpdate = (id?: string, successMessage?: string) => {
       return id;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({queryKey: ['todoList']});
+      queryClient.invalidateQueries({queryKey: ['todoList', 'todo']});
       navigate(pathnames.home);
       if (successMessage) {
         toast({
@@ -82,7 +82,7 @@ export const useTodoDelete = (successMessage: string) => {
   return useMutation({
     mutationFn: async (id: string) => deleteTodo(id),
     onSuccess: () => {
-      queryClient.invalidateQueries({queryKey: ['todoList']});
+      queryClient.invalidateQueries({queryKey: ['todoList', 'todo']});
       toast({
         title: successMessage,
         status: 'success',

@@ -43,7 +43,7 @@ export const Login = () => {
           />
         </PasswordField>
 
-        {isError && <span style={{color: 'red'}}>{t('register.error')}</span>}
+        {isError && <span style={{color: 'red'}}>{t('login.error')}</span>}
       </Stack>
     </LoginWrapper>
   );
