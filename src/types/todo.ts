@@ -6,3 +6,8 @@ export type Todo = {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export type CreateTodoPayload = {
+  title: string;
+  description?: string;
+}

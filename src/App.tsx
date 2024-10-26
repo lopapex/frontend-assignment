@@ -11,6 +11,7 @@ import {AnimatePresence} from 'framer-motion';
 import AnimatedLayout from './components/AnimatedLayout';
 import {ContentCard} from './components/ContentCard';
 import {CONTENT_MAX_WIDTH, LOGIN_MAX_WIDTH} from './constants/sizes';
+import {TodoForm} from './pages/Todo/TodoForm';
 
 const AuthenticatedRoute = ({children}: {children: JSX.Element}) => {
   const {getUser} = useUser();
@@ -64,6 +65,28 @@ function App() {
                   <AuthenticatedRoute>
                     <AnimatedLayout>
                       <Home />
+                    </AnimatedLayout>
+                  </AuthenticatedRoute>
+                }
+              />
+
+              <Route
+                path={pathnames.todoForm}
+                element={
+                  <AuthenticatedRoute>
+                    <AnimatedLayout>
+                      <TodoForm />
+                    </AnimatedLayout>
+                  </AuthenticatedRoute>
+                }
+              />
+
+              <Route
+                path={`${pathnames.todoForm}/:id`}
+                element={
+                  <AuthenticatedRoute>
+                    <AnimatedLayout>
+                      <TodoForm />
                     </AnimatedLayout>
                   </AuthenticatedRoute>
                 }

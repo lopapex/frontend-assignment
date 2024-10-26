@@ -47,12 +47,35 @@ const theme = extendTheme({
   },
   components: {
     Button: {
-      baseStyle: () => ({
-        bg: 'unset',
-        backgroundColor: '#0F62FE',
-        color: '#FFFFFF',
+      baseStyle: {
         borderRadius: '100px',
-      }),
+      },
+      variants: {
+        primary: {
+          bg: 'fill-brand',
+          color: 'text-white',
+          _hover: {
+            bg: 'fill-brand-hover',
+          },
+        },
+        secondary: {
+          bg: 'fill-gray',
+          color: 'text-primary',
+          _hover: {
+            bg: 'fill-gray-hover',
+          },
+        },
+        tertiary: {
+          bg: 'transparent',
+          color: 'text-primary',
+          _hover: {
+            bg: 'fill-gray',
+          },
+        },
+      },
+      defaultProps: {
+        variant: 'primary',
+      },
     },
   },
   fontSizes,

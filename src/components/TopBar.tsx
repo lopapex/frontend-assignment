@@ -7,6 +7,7 @@ import {
   PopoverContent,
   PopoverArrow,
   Button,
+  useTheme,
 } from '@chakra-ui/react';
 import {useTranslation} from 'react-i18next';
 import {useNavigate} from 'react-router-dom';
@@ -18,6 +19,7 @@ import {CONTENT_MAX_WIDTH} from '../constants/sizes';
 
 export const TopBar = () => {
   const {t} = useTranslation();
+  const theme = useTheme();
   const navigate = useNavigate();
 
   const {getUser, onLogout} = useUser();
@@ -59,7 +61,7 @@ export const TopBar = () => {
               <PopoverArrow />
               <Button
                 size={'xs'}
-                rightIcon={<IconBackwards fill="white" />}
+                rightIcon={<IconBackwards fill={theme.colors['fill-white']} />}
                 onClick={() => {
                   onLogout();
                   setIsPopoverOpen(false);

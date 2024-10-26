@@ -15,7 +15,7 @@ export const CheckMark = ({isChecked, onChange}: CheckMarkProps) => {
     <Checkbox
       isChecked={isChecked}
       onChange={e => onChange(e.target.checked)}
-      icon={isChecked ? <IconCheck fill="white" width="20px" height="20px" /> : undefined}
+      icon={isChecked ? <IconCheck fill={theme.colors['fill-white']} width="20px" height="20px" /> : undefined}
       sx={{
         '& .chakra-checkbox__control': {
           width: '32px',

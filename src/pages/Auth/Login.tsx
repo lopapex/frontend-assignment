@@ -31,7 +31,7 @@ export const Login = () => {
 
   return (
     <LoginWrapper type="login" isLoading={isLoading} onSubmit={onSubmit}>
-      <Field label={t('login.username')}>
+      <Field label={t('login.username')} isRequired>
         <Input {...register('userName', {required: t('input.required')})} />
       </Field>
 

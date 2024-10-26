@@ -1,6 +1,7 @@
 {
   "app.title": "Carvago Frontend Assignment",
   "app.description": "Assignment in React.js for developers who want to join our team.",
+  "app.error": "An error has occurred. Please check your credentials.",
 
   "topBar.title": "Zentask",
   "topBar.button": "Logout",
@@ -13,7 +14,6 @@
   "login.button": "Log in",
   "login.footer": "Don't have an account?",
   "login.footerLink": "Register",
-  "login.error": "An error has occurred. Please check your credentials.",
 
   "register.title": "Create Your Account",
   "register.description": "Join our community! Please fill out the form below to create a new account. We value your privacy.",
@@ -31,11 +31,24 @@
   "refreshError.title": "Error",
   "refreshError.description": "Access token has expired.",
   "input.required": "This field is mandatory.",
+  "input.optional": "optional",
 
   "home.add": "Add task",
   "home.intro": "Hello, {{username}}!",
   "home.incomplete.title": "To-do",
   "home.complete.title": "Completed",
   "home.empty.title": "You are amazing!",
-  "home.empty.description": "There is no more task to do."
+  "home.empty.description": "There is no more task to do.",
+
+  "addTodo.title": "New task",
+  "addTodo.name": "Task name",
+  "addTodo.description": "Description",
+  "addTodo.discard": "Discard",
+  "addTodo.save": "Create task",
+  "addTodo.success": "Task created successfully.",
+
+  "editTodo.discard": "Discard changes",
+  "editTodo.save": "Save changes",
+  "editTodo.success": "Task updated successfully.",
+  "deleteTodo.success": "Task deleted successfully."
 }

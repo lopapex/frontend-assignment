@@ -1,4 +1,4 @@
-import {Button, Text, Stack} from '@chakra-ui/react';
+import {Button, Text, Stack, useTheme} from '@chakra-ui/react';
 import {useTranslation} from 'react-i18next';
 import {useTodoList} from './hooks/useTodo';
 import {useMemo} from 'react';
@@ -8,9 +8,13 @@ import {formatDate} from '../../utils/dateHelpers';
 import {EmptyState} from './components/EmptyState';
 import {LoadingState} from './components/LoadingState';
 import {TodoList} from './components/todoList/TodoList';
+import {useNavigate} from 'react-router-dom';
+import pathnames from '../../constants/pathnames';
 
 export const Home = () => {
   const {t} = useTranslation();
+  const theme = useTheme();
+  const navigate = useNavigate();
   const {data, isLoading} = useTodoList();
 
   const {getUser} = useUser();
@@ -45,7 +49,7 @@ export const Home = () => {
             {formatDate(new Date())}
           </Text>
         </Stack>
-        <Button rightIcon={<IconAdd fill="white" />} type="submit">
+        <Button rightIcon={<IconAdd fill={theme.colors['fill-white']} />} onClick={() => navigate(pathnames.todoForm)}>
           {t(`home.add`)}
         </Button>
       </Stack>

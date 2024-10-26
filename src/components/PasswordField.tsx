@@ -17,7 +17,7 @@ export const PasswordField = ({children, label, errorMessage}: PasswordFieldProp
 
   return (
     <InputGroup>
-      <Field label={label} errorMessage={errorMessage}>
+      <Field label={label} errorMessage={errorMessage} isRequired>
         {cloneElement(children, {type: show ? 'text' : 'password'})}
       </Field>
       <InputRightElement

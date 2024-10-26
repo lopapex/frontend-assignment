@@ -8,4 +8,7 @@ export const API_ENDPOINTS = {
   TODO_LIST: '/todo/list',
   COMPLETE_TODO: '/todo/:id/complete',
   INCOMPLETE_TODO: '/todo/:id/incomplete',
+
+  CREATE_TODO: '/todo',
+  CRUD_TODO: '/todo/:id',
 };

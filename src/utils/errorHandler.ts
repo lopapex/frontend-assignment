@@ -52,7 +52,8 @@ const processFailedQueue = () => {
 const refreshTokenAndRetry = async (
   query?: Query<unknown, unknown, unknown, QueryKey>,
   mutation?: Mutation<unknown, unknown, unknown, unknown>,
-  variables?: unknown
+  variables?: unknown,
+  onError?: () => void
 ) => {
   try {
     if (!isRefreshing) {
@@ -65,6 +66,7 @@ const refreshTokenAndRetry = async (
   } catch {
     removeSessionStorageValue(SESSION_STORAGE_KEYS.USER_INFO);
     window.location.href = pathnames.login;
+    if (onError) onError();
   }
 };
 
@@ -72,32 +74,34 @@ const errorHandler = (
   error: any,
   query?: Query<unknown, unknown, unknown, QueryKey>,
   mutation?: Mutation<unknown, unknown, unknown, unknown>,
-  variables?: unknown
+  variables?: unknown,
+  onError?: () => void
 ) => {
   const {status, data} = (error as AxiosError<IErrorResponse>).response!;
 
   if (status === 401) {
-    if (mutation) refreshTokenAndRetry(undefined, mutation, variables);
+    if (mutation) refreshTokenAndRetry(undefined, mutation, variables, onError);
     else refreshTokenAndRetry(query);
   } else {
     console.error(data);
-    removeSessionStorageValue(SESSION_STORAGE_KEYS.USER_INFO);
-    window.location.href = pathnames.login;
+    if (onError) onError();
   };
 };
 
 export const queryErrorHandler = (
   error: unknown,
-  query: Query<unknown, unknown, unknown, QueryKey>
+  query: Query<unknown, unknown, unknown, QueryKey>,
+  onError?: () => void
 ) => {
-  errorHandler(error, query);
+  errorHandler(error, query, undefined, undefined, onError);
 };
 
 export const mutationErrorHandler = (
   error: unknown,
   variables: unknown,
   _context: unknown,
-  mutation: Mutation<unknown, unknown, unknown, unknown>
+  mutation: Mutation<unknown, unknown, unknown, unknown>,
+  onError?: () => void
 ) => {
-  errorHandler(error, undefined, mutation, variables);
+  errorHandler(error, undefined, mutation, variables, onError);
 };
