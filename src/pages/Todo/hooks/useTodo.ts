@@ -32,7 +32,7 @@ const getTodo = async (id: string) => {
   return data;
 };
 
-export const useTodoStatus = () => {
+export const useTodoStatus = (onSuccess?: () => void) => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -44,7 +44,11 @@ export const useTodoStatus = () => {
       }
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({queryKey: ['todoList', 'todo']});
+      queryClient.invalidateQueries({queryKey: ['todoList']});
+      queryClient.invalidateQueries({queryKey: ['todo']});
+      if (onSuccess) {
+        onSuccess();
+      }
     },
   });
 };
@@ -64,7 +68,8 @@ export const useTodoUpdate = (id?: string, successMessage?: string) => {
       return id;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({queryKey: ['todoList', 'todo']});
+      queryClient.invalidateQueries({queryKey: ['todoList']});
+      queryClient.invalidateQueries({queryKey: ['todo']});
       navigate(pathnames.home);
       if (successMessage) {
         toast({
@@ -76,13 +81,17 @@ export const useTodoUpdate = (id?: string, successMessage?: string) => {
   });
 };
 
-export const useTodoDelete = (successMessage: string) => {
+export const useTodoDelete = (successMessage: string, onSuccess?: () => void) => {
   const queryClient = useQueryClient();
   const toast = useCustomToast();
   return useMutation({
     mutationFn: async (id: string) => deleteTodo(id),
     onSuccess: () => {
-      queryClient.invalidateQueries({queryKey: ['todoList', 'todo']});
+      queryClient.invalidateQueries({queryKey: ['todoList']});
+      queryClient.invalidateQueries({queryKey: ['todo']});
+      if (onSuccess) {
+        onSuccess();
+      }
       toast({
         title: successMessage,
         status: 'success',

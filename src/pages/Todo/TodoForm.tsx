@@ -57,8 +57,10 @@ export const TodoForm = () => {
                 <Input {...register('title', {required: t('input.required')})} />
               </Field>
 
-              <Field label={t('addTodo.description')}>
-                <Textarea {...register('description')} />
+              {/* I decided go with API because it requires description
+              but in Figma it should be optional */}
+              <Field label={t('addTodo.description')} errorMessage={errors.description?.message} isRequired>
+                <Textarea {...register('description', {required: t('input.required')})} />
               </Field>
             </Stack>
             <Stack

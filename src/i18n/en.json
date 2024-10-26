@@ -2,6 +2,10 @@
   "app.title": "Carvago Frontend Assignment",
   "app.description": "Assignment in React.js for developers who want to join our team.",
   "app.error": "An error has occurred.",
+  "app.edit": "Edit",
+  "app.delete": "Delete",
+  "app.complete": "Complete",
+  "app.incomplete": "Incomplete",
 
   "topBar.title": "Zentask",
   "topBar.button": "Logout",
@@ -40,6 +44,9 @@
   "home.complete.title": "Completed",
   "home.empty.title": "You are amazing!",
   "home.empty.description": "There is no more task to do.",
+
+  "detail.complete": "Task completed",
+  "detail.incomplete": "Task not completed",
 
   "addTodo.title": "New task",
   "addTodo.name": "Task name",

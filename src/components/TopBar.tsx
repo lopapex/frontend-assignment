@@ -60,8 +60,9 @@ export const TopBar = () => {
             <PopoverContent padding={2} width="150px" border="none">
               <PopoverArrow />
               <Button
-                size={'xs'}
-                rightIcon={<IconBackwards fill={theme.colors['fill-white']} />}
+                size="xs"
+                variant="tertiary"
+                rightIcon={<IconBackwards fill={theme.colors['fill-primary']} />}
                 onClick={() => {
                   onLogout();
                   setIsPopoverOpen(false);

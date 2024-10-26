@@ -40,7 +40,7 @@ export const TodoItem = ({item}: TodoItemProps) => {
           />
           <Text
             _hover={{opacity: 0.6, cursor: 'pointer'}}
-            onClick={() => console.log('clicked')}
+            onClick={() => navigate(`${pathnames.todoDetail}/${item.id}`)}
             width="100%"
             fontSize="heading.3"
             fontWeight="heading.3"
@@ -68,7 +68,7 @@ export const TodoItem = ({item}: TodoItemProps) => {
                 leftIcon={<IconEdit fill="fill-primary" />}
                 onClick={() => navigate(`${pathnames.todoForm}/${item.id}`)}
               >
-                Edit
+                {t('app.edit')}
               </Button>
               <Button
                 size="sm"
@@ -78,7 +78,7 @@ export const TodoItem = ({item}: TodoItemProps) => {
                 justifyContent="flex-start"
                 onClick={() => deleteTodo(item.id)}
               >
-                Delete
+                {t('app.delete')}
               </Button>
             </PopoverContent>
           </Popover>

@@ -9,5 +9,5 @@ export type Todo = {
 
 export type CreateTodoPayload = {
   title: string;
-  description?: string;
+  description: string;
 }

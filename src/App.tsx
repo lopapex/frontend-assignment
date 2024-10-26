@@ -12,6 +12,7 @@ import AnimatedLayout from './components/AnimatedLayout';
 import {ContentCard} from './components/ContentCard';
 import {CONTENT_MAX_WIDTH, LOGIN_MAX_WIDTH} from './constants/sizes';
 import {TodoForm} from './pages/Todo/TodoForm';
+import { TodoDetail } from './pages/Todo/TodoDetail';
 
 const AuthenticatedRoute = ({children}: {children: JSX.Element}) => {
   const {getUser} = useUser();
@@ -87,6 +88,17 @@ function App() {
                   <AuthenticatedRoute>
                     <AnimatedLayout>
                       <TodoForm />
+                    </AnimatedLayout>
+                  </AuthenticatedRoute>
+                }
+              />
+
+              <Route
+                path={`${pathnames.todoDetail}/:id`}
+                element={
+                  <AuthenticatedRoute>
+                    <AnimatedLayout>
+                      <TodoDetail />
                     </AnimatedLayout>
                   </AuthenticatedRoute>
                 }
